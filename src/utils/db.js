@@ -1,13 +1,13 @@
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
-
-const db = new Sequelize({
-  database: "pruebadb", //"railway",
+const db = new Sequelize(process.env.DATABASE_URL,{
+  database: "railway", 
   port: 5432,
-  host: "localhost", //"postgres.railway.internal",
+  host: "postgres.railway.internal",
   dialect: "postgres",
   username: "postgres",
-  password: "root", // "LIQVEgnCRImBZCHCYybNUlfThsLqmphS",
+  password: "DACgsQmfmFZAdDDxWjArVZLmwmNtTcTe",
   logging: false,
 });
 
