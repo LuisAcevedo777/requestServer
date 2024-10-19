@@ -1,0 +1,582 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Request API",
+    "description": "Una API para realizar solicitudes, realizadas por empleados",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/request/": {
+      "post": {
+        "tags": ["Request"],
+        "description": "Con este endpoint puedes crear solicitudes",
+        "summary": "Crea una nueva solicitud",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "El codigo del empleado"
+          },
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "description": "El texto que sirve para especificar el asunto de la solicitud"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "description": "Id del empleado quien realiza la solicitud"
+          },
+          {
+            "name": "summary",
+            "in": "path",
+            "required": true,
+            "description": "El texto que especifíca la solicitud"
+          }
+        ],
+        "requestBody": {
+          "description": "Los campos para crear un nuevo prestamo son: employeeId, code, description, summary",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/request" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Request"],
+        "description": "Con este endpoint puedes traer todos los requerimientos de la base de datos",
+        "summary": "Obtén todas las solicitudes realizadas",
+        
+     
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+        "/api/request/{id}": {
+          "get": {
+            "tags": ["Request"],
+            "description": "Con este endpoint puedes traer una solicitud",
+            "summary": "Obtén una solicitud",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "El id de de la solicitud a obtener"
+              }
+            ],
+            "requestBody": {
+              "description": "El id debe ser un número",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "example": "/api/request/1"
+                }
+              }
+            },
+     
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      },
+
+    "/api/employee/": {
+      "get": {
+        "tags": ["Employee"],
+        "description": "Con este endpoint puedes obtener todos los empleados de la base de datos",
+        "summary": "Obtén todos los empleados de la base de datos",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": "/api/employee/"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Employee"],
+        "description": "Con este endpoint puedes crear un empleado",
+        "summary": "Crea un nuevo libro",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": false,
+            "description": "El id del rol del empleado"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "El nombre del empleado"
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "El email del empleado"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "required": true,
+            "description": "El password del empleado"
+          }
+        ],
+        "requestBody": {
+          "description": "Los campos para crear un nuevo empleado son: name, email, password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/book" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "database error connection"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "database error connection"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/{id}": {
+      "get": {
+        "tags": ["Employee"],
+        "description": "Con este endpoint puedes obtener un empleado con el id que pases como parametro",
+        "summary": "Obtén un empleado",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "description": "El id del empleado que se quiere obtener"
+          }
+        ],
+        "requestBody": {
+          "description": "El id debe ser un número",
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": "/api/employee/1"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Employee"],
+        "description": "Con este endpoint puedes eliminar un empleado con el id que pases como parametro",
+        "summary": "Elimina un empleado de la base de datos",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El id del empleado que se quiere eliminar"
+          }
+        ],
+        "requestBody": {
+          "description": "El id debe ser un número",
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": "/api/employee/1"
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Realizado"
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Employee"],
+        "description": "Con este endpoint puedes Actualizr la información de un empleado con el id que pases como parametro",
+        "summary": "Actualiza un empleado",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El id del empleado que se quiere Actualizar"
+          }
+        ],
+        "requestBody": {
+          "description": "El id debe ser un número",
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": "/api/employee/1",
+              "schema": { "$ref": "#/components/schemas/employee" }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Realizado"
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/auth/login/": {
+      "post": {
+        "tags": ["Authentication"],
+        "description": "Con este endpoint Obtén acceso al aplicativo como usuario",
+        "summary": "Autenticate como usuario",
+        "requestBody": {
+          "description": "Los campos para autenticación, son: email, password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/login" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "authenticated"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "database error connection, validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "database error connection, validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/auth/register/": {
+      "post": {
+        "tags": ["Authentication"],
+        "description": "Con este endpoint puedes registrarte en el aplicativo como usuario",
+        "summary": "Registrate como usuario",
+        "requestBody": {
+          "description": "Los campos para registro, son: name, email, password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/register" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "registred"
+          },
+          "409": {
+            "description": "conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "database error connection, validation error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "database error connection, validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+  },
+
+  "components": {
+    "schemas": {
+      "login": {
+        "description": "Contrasena",
+
+        "properties": {
+          "email": {
+            "example": "juan@gmail.com",
+            "type": "string"
+          },
+          "password": {
+            "example": "123456",
+            "type": "string"
+          }
+        }
+      },
+      "register": {
+        "description": "Registro de usuario",
+        "type": "object",
+        "properties": {
+          "name": {
+            "example": "juan",
+            "type": "string"
+          },
+          "email": {
+            "example": "juan@gmail.com",
+            "type": "string"
+          },
+          "password": {
+            "example": "123456",
+            "type": "string"
+          }
+        }
+      },
+      "employee": {
+        "description": "CRUD de empleados",
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "example": "Juan Colorado",
+            "type": "string"
+          },
+          "email": {
+            "example": "andrea@gmail.com",
+            "type": "string"
+          },
+          "password": {
+            "example": "123456",
+            "type": "string"
+          },
+           "dataEntry": {
+            "example": "01/01/2024",
+            "type": "string"
+          },
+           "salary": {
+            "example": 400,
+            "type": "integer"
+          }
+        }
+      },
+      "request": {
+        "description": "Generación de solicitudes",
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "integer",
+            "example": 2
+          },
+          "code": {
+            "example": "ab5",
+            "type": "string"
+          },
+          "description": {
+            "example": "Duda sobre el salario",
+            "type": "string"
+          },
+          "summary": {
+            "example": "Salario del dia de ayer no llegó a tiempo",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
