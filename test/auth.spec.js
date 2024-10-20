@@ -6,7 +6,7 @@ describe("Authentication API", () => {
     it("should respond with a 200 status code and return a token", async () => {
       const userCredentials = {
        
-        email: "juan@gmail.com",
+        email: "juanadmin@gmail.com",
         password: "123",
       };
 
@@ -25,7 +25,7 @@ describe("Authentication API", () => {
       const newUser = {
         name: "newuser",
         password: "newpassword",
-        email: "aaaaa@gmail.com",
+        email: "aaaa@gmail.com",
       };
 
       const response = await request(app)

@@ -12,8 +12,7 @@ const requestValidator = [
     .withMessage("title should have just 50 characteres"),
 
   check("summary", "error in summary")
-    .exists()
-    .withMessage("summary should to exist")
+    .optional()
     .isString()
     .withMessage("summary should be a string")
     .isLength({ max: 50 })

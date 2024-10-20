@@ -13,13 +13,13 @@ describe("Rutas de /api/employee/", () => {
  
   describe("PUT /api/employee/:id", () => {
     it("debe actualizar un empleado existente y devolver 204", async () => {
-      const updatedBook ={
+      const updatedEmployee ={
         "roleId": 1,
         "name": "eduard",
         "dateEntry":  "01/01/2024",
         "salary": 400
        };
-      const response = await request(app).put("/api/employee/1").send(updatedBook);
+      const response = await request(app).put("/api/employee/1").send(updatedEmployee);
 
       expect(response.status).toBe(204);
     });
