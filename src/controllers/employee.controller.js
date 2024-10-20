@@ -1,5 +1,7 @@
 const employeeServices = require("../services/employee.service");
 
+//Función para obtener todos los empleados de la base de datos
+
 const getAllEmployeesController = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -10,15 +12,19 @@ const getAllEmployeesController = async (req, res, next) => {
   }
 };
 
+//Función para consegir un solo empleado de la base de datos con el id
+
 const getEmployeeController = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const {id} = req.params;
     const getEmployees = await employeeServices.getOne(id);
     res.json(getEmployees);
   } catch (error) {
     next(error);
   }
 };
+
+//Función para crear un empleado en la base de datos
 
 const createEmployeeController = async (req, res, next) => {
   try {
@@ -30,6 +36,7 @@ const createEmployeeController = async (req, res, next) => {
   }
 };
 
+//Función para elminar un empleado de la base de datos
 
 const deleteEmployeeController = async (req, res, next) => {
   try {
@@ -40,6 +47,8 @@ const deleteEmployeeController = async (req, res, next) => {
     next(error);
   }
 };
+
+//Función para actualizar la información de un empleado en la base de datos
 
 const updateEmployeeController = async (req, res, next) => {
   try {

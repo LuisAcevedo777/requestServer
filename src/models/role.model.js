@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/db");
 
+//Definición de la tabla de roles
 
 const Role = db.define(
   "roles",

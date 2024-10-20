@@ -8,6 +8,7 @@ const {
 const requestValidator = require('../validators/request.validator')
 const {authMiddleware, verificarRol} = require('../middlewares/auth.middleware')
 
+//Todas las rutas para realizar el CRUD de las solicitudes
 
 const requestRouter = Router();
 

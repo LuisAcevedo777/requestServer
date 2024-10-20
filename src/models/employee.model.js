@@ -4,12 +4,13 @@ const db = require("../utils/db");
 const bcrypt = require("bcrypt");
 const roleModel = require('../models/role.model')
 
+//Definición de la tabla de empleados con sus características
+
 const Employee = db.define(
   "employees",
   {
     employeeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
       field: "employee_id",
@@ -33,6 +34,9 @@ const Employee = db.define(
    
   {
     timestamps: true,
+
+    //código para encriptar la información suministrada en la contraseña del usuario
+
     hooks: {
       beforeCreate: async (user) => {
         const salt = await bcrypt.genSalt(10);

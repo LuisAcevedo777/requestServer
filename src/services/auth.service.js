@@ -1,7 +1,12 @@
 const jwt = require("jsonwebtoken");
 const employeeModel = require("../models/employee.model");
 
+//clase que contiene todos los servicios de authenticación
+
 class authServices {
+
+  //Función para generar un nuevo token
+
   static genToken(payload) {
     try {
       const token = jwt.sign(payload, "clave", {
@@ -14,6 +19,8 @@ class authServices {
     }
   }
 
+  //Función para crear un empleado
+
   static async createOne(newEmployee) {
     try {
       const employeeCreated = await employeeModel.create(newEmployee);
@@ -22,6 +29,8 @@ class authServices {
       throw error;
     }
   }
+
+ //Función para obtener un empleado encontrandolo por su email
 
   static async getEmployee(email) {
     try {

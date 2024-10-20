@@ -1,6 +1,9 @@
 const { check, body } = require("express-validator");
 const validate = require("../utils/validate");
 
+//validación para las rutas de empleados
+
+
 const employeeValidator = [
 
     body("roleId", "error in roleId")

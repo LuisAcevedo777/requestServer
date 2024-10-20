@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+//middleware para verificar que el usuario tenga token
+
 const authMiddleware = (req, res, next) => {
   const token = req.headers["token"];
   try {
@@ -13,6 +15,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
+//middleware para verificacion del rol y poder acceder al controlador
 
 const verificarRol = (roles) => {
   return (req, res, next) => {

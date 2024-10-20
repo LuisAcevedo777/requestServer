@@ -16,6 +16,7 @@ require("dotenv").config();
 const app = express();
 initModel();
 
+//autenticación y sincronización con la base de datos
 
   db.authenticate();
   console.log("db authenticated");
@@ -24,10 +25,12 @@ initModel();
   console.log('db synchronized');
 
  
-
+//puerto designado para el servidor
 
 
   const PORT = process.env.PORT || 8001;
+
+//Usos de las rutas, manejo de paquetes json, habilitación con cors, formateo de información con morgan
 
   app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
   app.use(express.json());

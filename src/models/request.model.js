@@ -1,12 +1,13 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/db");
 
+//Definición de la tabla de solicitudes con sus características
+
 const Request = db.define(
   "requests",
   {
     requestId: {
       type: DataTypes.INTEGER(),
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
       field: "request_id",

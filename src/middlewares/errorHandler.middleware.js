@@ -7,10 +7,15 @@ const {
   ConnectionRefusedError,
 } = require("sequelize");
 
+
+//visualización del error por consola
+
 const logError = (error, req, res, next) => {
   console.log(error);
   next();
 };
+
+//manejo de error por defecto
 
 const errorHandler = (error, req, res, next) => {
   const { status } = error;
@@ -20,6 +25,10 @@ const errorHandler = (error, req, res, next) => {
     throw error;
   }
 };
+
+
+//manejo de errore con sequelize
+
 
 const orm = (error, req, res, next) => {
   if (

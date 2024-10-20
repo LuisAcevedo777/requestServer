@@ -1,6 +1,8 @@
 const { check, body } = require("express-validator");
 const validate = require("../utils/validate");
 
+//validación para las rutas de las solicitudes
+
 const requestValidator = [
 
   check("code", "error in code")
