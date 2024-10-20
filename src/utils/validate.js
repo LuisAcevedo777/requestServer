@@ -1,10 +1,15 @@
+
 const { validationResult } = require("express-validator");
 
 //Porción de código para lanzar la validación con express-validator
 
 const validate = (req, res, next) => {
-  validationResult(req).throw();
-  return next();
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next(); 
 };
 
 module.exports = validate;
