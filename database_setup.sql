@@ -1,0 +1,57 @@
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    role_id INT DEFAULT 3,
+    name VARCHAR(50) NOT NULL,
+    date_entry VARCHAR(15),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(555) NOT NULL,
+    salary INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE requests (
+    request_id SERIAL PRIMARY KEY,
+    code VARCHAR(50) NOT NULL,
+    description VARCHAR(50) NOT NULL,
+    employee_id INT NOT NULL,
+    summary VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    name VARCHAR(12) NOT NULL
+);
+
+
+
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    role_id INT DEFAULT 3,
+    name VARCHAR(50) NOT NULL,
+    date_entry VARCHAR(15),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(555) NOT NULL,
+    salary INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
+
+CREATE TABLE requests (
+    request_id SERIAL PRIMARY KEY,
+    code VARCHAR(50) NOT NULL,
+    description VARCHAR(50) NOT NULL,
+    employee_id INT NOT NULL,
+    summary VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    name VARCHAR(12) NOT NULL
+);

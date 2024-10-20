@@ -4,7 +4,9 @@ const authMiddleware = (req, res, next) => {
   const token = req.headers["token"];
   try {
     const employeeToken = jwt.verify(token, "clave", { algorithm: "HS512" });
+    
     req.tok = employeeToken;
+    req.role = employeeToken.roleEmployee.name
     next();
   } catch (error) {
     return res.status(400).json(error);
