@@ -6,7 +6,7 @@ const {
   deleteEmployeeController,
   updateEmployeeController,
 } = require("../controllers/employee.controller");
-const employeeValidator = require('../validators/employee.validator')
+//const employeeValidator = require('../validators/employee.validator')
 const {authMiddleware,verificarRol } = require('../middlewares/auth.middleware')
 
 
@@ -18,10 +18,10 @@ employeeRouter.get("/api/employee/",authMiddleware,verificarRol(['admin']), getA
 
 employeeRouter.get("/api/employee/:id",authMiddleware,verificarRol(['admin','employee']), getEmployeeController);
 
-employeeRouter.post("/api/employee/",employeeValidator,authMiddleware, verificarRol(['admin']),createEmployeeController);
+employeeRouter.post("/api/employee/",authMiddleware, verificarRol(['admin']),createEmployeeController);
 
 employeeRouter.delete("/api/employee/:id",authMiddleware,verificarRol(['admin']), deleteEmployeeController);
 
-employeeRouter.put("/api/employee/:id",employeeValidator,authMiddleware, verificarRol(['admin']),updateEmployeeController);
+employeeRouter.put("/api/employee/:id",authMiddleware, verificarRol(['admin']),updateEmployeeController);
 
 module.exports = employeeRouter;
