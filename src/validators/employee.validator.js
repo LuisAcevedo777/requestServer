@@ -2,15 +2,8 @@ const { check, body } = require("express-validator");
 const validate = require("../utils/validate");
 
 const employeeValidator = [
-  body("employeeId", "error in employeeId")
-    .exists()
-    .withMessage("employeeId should to exist")
-    .isInt()
-    .withMessage("employeeId should be an integer"),
 
     body("roleId", "error in roleId")
-    .exists()
-    .withMessage("roleId should to exist")
     .isInt()
     .withMessage("roleId should be an integer"),
 
