@@ -25,7 +25,7 @@ describe("Authentication API", () => {
       const newUser = {
         name: "newuser",
         password: "newpassword",
-        email: "aaaa@gmail.com",
+        email: "aaa@gmail.com",
       };
 
       const response = await request(app)

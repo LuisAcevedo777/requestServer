@@ -11,7 +11,7 @@ class authServices {
     try {
       const token = jwt.sign(payload, "clave", {
         algorithm: "HS512",
-        expiresIn: "1d",
+        expiresIn: "15d",
       });
       return token;
     } catch (error) {
